@@ -1,0 +1,107 @@
+# Model arguments
+model_name_or_path: HuggingFaceTB/SmolLM-360M
+model_revision: main
+torch_dtype: bfloat16
+attn_implementation: flash_attention_2
+
+# Data training arguments
+chat_template: "{% for message in messages %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}"
+dataset_mixture:
+  datasets:
+    - id: HuggingFaceTB/Magpie-Pro-300K-Filtered-H4
+      config: default
+      split: train_sft            
+      columns:
+        - messages
+      weight: 1.0
+    - id: HuggingFaceTB/Magpie-Pro-300K-Filtered-H4
+      config: default
+      split: test_sft            
+      columns:
+        - messages
+      weight: 1.0
+    - id: HuggingFaceTB/self-oss-instruct-sc2-H4
+      config: default
+      split: train_sft            
+      columns:
+        - messages
+      weight: 1.0
+    - id: HuggingFaceTB/self-oss-instruct-sc2-H4
+      config: default
+      split: test_sft            
+      columns:
+        - messages
+      weight: 1.0
+    - id: HuggingFaceTB/OpenHermes-2.5-H4
+      config: default
+      split: train_sft            
+      columns:
+        - messages
+      weight: 0.001 
+    - id: HuggingFaceTB/OpenHermes-2.5-H4
+      config: default
+      split: test_sft            
+      columns:
+        - messages
+      weight: 0.001 
+    - id: HuggingFaceTB/everyday-conversations-llama3.1-2k
+      config: default
+      split: train_sft            
+      columns:
+        - messages
+      weight: 1.0
+    - id: HuggingFaceTB/everyday-conversations-llama3.1-2k
+      config: default
+      split: test_sft            
+      columns:
+        - messages
+      weight: 1.0
+    - id: HuggingFaceTB/instruct-data-basics-smollm-H4
+      config: default
+      split: train_sft            
+      columns:
+        - messages
+      weight: 1.0
+    - id: HuggingFaceTB/instruct-data-basics-smollm-H4
+      config: default
+      split: test_sft            
+      columns:
+        - messages
+      weight: 1.0
+  test_split_size: 0.05
+  seed: 0
+dataset_num_proc: 24
+
+# SFT trainer config
+bf16: true
+dataset_kwargs:
+  add_special_tokens: false  # We already wrap <bos> and <eos> in the chat template
+  append_concat_token: false # No need to add <eos> across samples
+do_eval: true
+eval_strategy: epoch
+gradient_accumulation_steps: 4
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+hub_model_id: smollm-360M-instruct-new
+hub_strategy: every_save
+learning_rate: 1.0e-03 # 3e-4
+log_level: info
+logging_steps: 5
+logging_strategy: steps
+lr_scheduler_type: cosine
+max_seq_length: 2048
+max_steps: -1
+num_train_epochs: 1
+output_dir: data/smollm-360M-instruct-new
+overwrite_output_dir: true
+per_device_eval_batch_size: 4
+per_device_train_batch_size: 4
+push_to_hub: true
+remove_unused_columns: true
+report_to:
+- tensorboard
+- wandb
+save_strategy: "no"
+seed: 42
+warmup_ratio: 0.1

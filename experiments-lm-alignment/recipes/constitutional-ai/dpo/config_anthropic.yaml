@@ -1,0 +1,67 @@
+# Model arguments
+model_name_or_path: alignment-handbook/mistral-7b-sft-constitutional-ai
+torch_dtype: null
+
+# Data training arguments
+# For definitions, see: src/h4/training/config.py
+dataset_mixture:
+  datasets:
+    - id: HuggingFaceH4/ultrafeedback_binarized
+      config: default
+      split: train_prefs           
+      columns:
+        - chosen
+        - rejected
+      weight: 1.0
+    - id: HuggingFaceH4/ultrafeedback_binarized
+      config: default
+      split: test_prefs
+      columns:
+        - chosen
+        - rejected
+      weight: 1.0
+    - id: HuggingFaceH4/cai-conversation-harmless
+      config: default
+      split: train_prefs           
+      columns:
+        - chosen
+        - rejected
+      weight: 1.0
+    - id: HuggingFaceH4/cai-conversation-harmless
+      config: default
+      split: test_prefs
+      columns:
+        - chosen
+        - rejected
+      weight: 1.0
+  test_split_size: 3000
+  seed: 0
+dataset_num_proc: 12
+
+# DPOTrainer arguments
+bf16: true
+beta: 0.1
+do_eval: true
+do_train: true
+eval_strategy: steps
+eval_steps: 1000
+gradient_accumulation_steps: 1
+gradient_checkpointing: true
+hub_model_id: mistral-7b-dpo-constitutional-ai
+learning_rate: 5.0e-7
+log_level: info
+logging_steps: 10
+lr_scheduler_type: linear
+max_length: 1024
+max_prompt_length: 512
+num_train_epochs: 3
+optim: rmsprop
+output_dir: data/mistral-7b-dpo-constitutional-ai
+per_device_train_batch_size: 2
+per_device_eval_batch_size: 8
+push_to_hub: true
+save_strategy: "steps"
+save_steps: 100
+save_total_limit: 1
+seed: 42
+warmup_ratio: 0.1

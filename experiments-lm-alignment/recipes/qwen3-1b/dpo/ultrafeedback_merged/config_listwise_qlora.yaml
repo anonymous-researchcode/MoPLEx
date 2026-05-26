@@ -1,0 +1,75 @@
+# Single ListDPO/ListPO baseline on the merged cyclic UltraFeedback ranking dataset.
+# This trains one shared policy utility model across all preference dimensions.
+
+# Model arguments
+model_name_or_path: Qwen/Qwen3-0.6B
+torch_dtype: bfloat16
+attn_implementation: sdpa
+
+# LoRA arguments
+use_peft: true
+load_in_4bit: true
+lora_r: 64
+lora_alpha: 64
+lora_dropout: 0.05
+lora_target_modules:
+- q_proj
+- k_proj
+- v_proj
+- o_proj
+- gate_proj
+- up_proj
+- down_proj
+
+# Data arguments
+dataset_name: ./data/cyclic_ultrafeedback_merged
+dataset_train_split: train
+dataset_test_split: validation
+dataset_format: listwise
+preference_dimensions:
+- instruction_following
+- helpfulness
+- honesty
+- truthfulness
+listwise_num_responses: 4
+listwise_min_responses: 2
+run_ranking_eval: true
+ranking_eval_during_training: true
+dataset_num_proc: 12
+
+# DPOTrainer arguments
+bf16: true
+beta: 0.01
+listwise: true
+listwise_beta: 0.01
+do_eval: true
+eval_strategy: steps
+eval_steps: 50
+gradient_accumulation_steps: 4
+gradient_checkpointing: true
+gradient_checkpointing_kwargs:
+  use_reentrant: false
+learning_rate: 5.0e-6
+load_best_model_at_end: true
+metric_for_best_model: ranking_validation/ranking/pairwise_acc
+greater_is_better: true
+log_level: info
+logging_steps: 10
+lr_scheduler_type: cosine
+max_length: 1024
+max_prompt_length: 512
+max_steps: 1000
+optim: paged_adamw_32bit
+output_dir: outputs/ultrafeedback-merged/qwen3-0.6b-listwise-dpo-qlora
+per_device_train_batch_size: 2
+per_device_eval_batch_size: 2
+push_to_hub: false
+remove_unused_columns: false
+report_to:
+- wandb
+run_name: qwen3-0.6b-listwise-dpo-qlora-ultrafeedback-merged
+save_strategy: steps
+save_steps: 50
+save_total_limit: 1
+seed: 42
+warmup_ratio: 0.1
