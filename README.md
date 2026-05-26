@@ -1,4 +1,4 @@
-# MMPO Code
+# Overview
 
 This repository contains code for learning mixture of Plackett-Luce models using langauge models experiments. It has two main parts:
 
