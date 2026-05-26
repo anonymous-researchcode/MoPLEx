@@ -17,7 +17,7 @@ downsample_rate=0.01
 
 # Use disagreement listwise dataset (will be converted to pairwise for training;
 # cluster_posterior metrics are computed on listwise eval split).
-data_path="/home/michael/project/MMPO-implement-from-micro/data_process/dataset/ultrafeedback_disagreement"
+data_path="/path/to/ultrafeedback_disagreement"
 
 mkdir -p log
 

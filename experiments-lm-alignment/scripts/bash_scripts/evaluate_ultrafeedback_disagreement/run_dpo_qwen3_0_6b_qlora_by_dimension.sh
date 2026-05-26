@@ -19,7 +19,7 @@ DOWNSAMPLE_RATIO="${DOWNSAMPLE_RATIO:-0.25}"
 DATASET_DOWNSAMPLE_GROUP_KEY="${DATASET_DOWNSAMPLE_GROUP_KEY:-source_index}"
 
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-1}"
-export WANDB_ENTITY="${WANDB_ENTITY:-VirtuosoResearch}"
+export WANDB_ENTITY="${WANDB_ENTITY:-anonymous}"
 export WANDB_PROJECT="${WANDB_PROJECT:-multimodal-preference-optimization}"
 export WANDB_MODE="${WANDB_MODE:-online}"
 

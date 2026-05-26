@@ -2,7 +2,7 @@
 """Inspect raw UltraFeedback and listwise conversions for four dimensions.
 
 Usage:
-	PYTHONPATH=src /home/ldy/miniconda3/envs/alignment/bin/python tests/inspect_ultrafeedback_listwise.py
+	PYTHONPATH=src python tests/inspect_ultrafeedback_listwise.py
 """
 # %%
 from __future__ import annotations

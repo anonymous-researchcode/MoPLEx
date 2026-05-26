@@ -35,7 +35,7 @@ GRADIENT_CHECKPOINTING="${GRADIENT_CHECKPOINTING:-false}"
 LINEAR_APPROX_REF_MODE="${LINEAR_APPROX_REF_MODE:-exact_score}"
 
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-1}"
-export WANDB_ENTITY="${WANDB_ENTITY:-VirtuosoResearch}"
+export WANDB_ENTITY="${WANDB_ENTITY:-anonymous}"
 export WANDB_PROJECT="${WANDB_PROJECT:-multimodal-preference-optimization}"
 export WANDB_MODE="${WANDB_MODE:-online}"
 EXTRA_ARGS=("$@")
@@ -47,13 +47,13 @@ DIMENSIONS="${DIMENSIONS:-}"
 if [[ -z "${DIMENSIONS}" ]]; then
   if [[ -f "${BASE_STATS_PATH}" ]]; then
     DIMENSIONS="$(
-      /home/ldy/miniconda3/envs/alignment/bin/python -c \
+      python -c \
         'import json, sys; stats=json.load(open(sys.argv[1])); print(" ".join(stats.get("dimensions", [])))' \
         "${BASE_STATS_PATH}"
     )"
   elif [[ -f "${ORIGINAL_DATASET_DIR}/stats.json" ]]; then
     DIMENSIONS="$(
-      /home/ldy/miniconda3/envs/alignment/bin/python -c \
+      python -c \
         'import json, sys; stats=json.load(open(sys.argv[1])); print(" ".join(stats.get("dimensions", [])))' \
         "${ORIGINAL_DATASET_DIR}/stats.json"
     )"

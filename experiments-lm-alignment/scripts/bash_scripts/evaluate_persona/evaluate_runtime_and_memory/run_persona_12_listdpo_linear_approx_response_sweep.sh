@@ -34,7 +34,7 @@ OUTPUT_ROOT="${OUTPUT_ROOT:-outputs/persona/runtime-memory/listdpo-linear-approx
 BASE_WANDB_NAME="${WANDB_NAME:-qwen3-0.6b-persona12-listdpo-linear-approx-runtime-memory}"
 
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-1}"
-export WANDB_ENTITY="${WANDB_ENTITY:-VirtuosoResearch}"
+export WANDB_ENTITY="${WANDB_ENTITY:-anonymous}"
 export WANDB_PROJECT="${WANDB_PROJECT:-multimodal-preference-optimization}"
 export WANDB_MODE="${WANDB_MODE:-online}"
 EXTRA_ARGS=("$@")

@@ -11,7 +11,7 @@ fi
 
 OUTPUT_DIR="${OUTPUT_DIR:-data/ultrafeedback_disagreement}"
 
-PYTHONPATH=src /home/ldy/miniconda3/envs/alignment/bin/python scripts/create_disagreement_ultrafeedback_dataset.py \
+PYTHONPATH=src python scripts/create_disagreement_ultrafeedback_dataset.py \
   --output_dir "${OUTPUT_DIR}" \
   --create_splits \
   "${extra_args[@]}"

@@ -70,7 +70,7 @@ args=(
     # Enable Weights & Biases logging.
     --use_wandb
     # WandB organization/user.
-    --wandb_entity "VirtuosoResearch"
+    --wandb_entity "anonymous"
     # WandB project name.
     --wandb_project "multimodal-preference-optimization"
     # Optional run name for easier tracking in the dashboard.
@@ -84,7 +84,7 @@ args=(
 #   --freeze_hf_backbone
 )
 
-# /home/ldy/miniconda3/envs/alignment/bin/python 
+# python
 python train_text_mixture_pl_lm.py "${args[@]}"
 done
 # Notes:

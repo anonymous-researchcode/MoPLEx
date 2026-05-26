@@ -67,7 +67,7 @@ echo "  downsample: ratio=${DOWNSAMPLE_RATIO}, seed=${SEED}, group_key=${DOWNSAM
 echo
 echo "After this, train on OUTPUT_DIR with DOWNSAMPLE_RATIO=1.0 to avoid double-downsampling."
 
-/home/ldy/miniconda3/envs/alignment/bin/python \
+python \
   scripts/augment_ranking_dataset_with_generations.py \
   --dataset_name "${DATASET_DIR}" \
   --output_dir "${OUTPUT_DIR}" \

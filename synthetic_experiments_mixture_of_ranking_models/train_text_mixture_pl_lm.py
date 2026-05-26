@@ -454,7 +454,7 @@ def main() -> None:
     parser.add_argument(
         "--wandb_entity",
         type=str,
-        default="VirtuosoResearch",
+        default="anonymous",
         help="WandB entity (organization or username).",
     )
     parser.add_argument(

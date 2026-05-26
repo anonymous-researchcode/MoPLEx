@@ -19,7 +19,7 @@ em_prior_smoothing=1e-3
 
 # Use disagreement listwise dataset (converted to pairwise for training;
 # cluster_posterior metrics are computed on listwise eval split).
-data_path="/home/michael/project/MMPO-implement-from-micro/data_process/dataset/ultrafeedback_disagreement"
+data_path="/path/to/ultrafeedback_disagreement"
 
 mkdir -p log
 

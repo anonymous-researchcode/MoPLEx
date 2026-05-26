@@ -24,7 +24,7 @@ DOWNSAMPLE_GROUP_KEY="${DOWNSAMPLE_GROUP_KEY:-source_index}"
 METRIC_FOR_BEST_MODEL="${METRIC_FOR_BEST_MODEL:-ranking_validation/mixture/cluster_acc}"
 
 export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"
-export WANDB_ENTITY="${WANDB_ENTITY:-VirtuosoResearch}"
+export WANDB_ENTITY="${WANDB_ENTITY:-anonymous}"
 export WANDB_PROJECT="${WANDB_PROJECT:-multimodal-preference-optimization}"
 export WANDB_MODE="${WANDB_MODE:-online}"
 
@@ -39,7 +39,7 @@ export PYTHONPATH="${REPO_ROOT}/src:${PYTHONPATH:-}"
 DIMENSIONS="${DIMENSIONS:-}"
 if [[ -z "${DIMENSIONS}" && -f "${DATASET_DIR}/stats.json" ]]; then
   DIMENSIONS="$(
-    /home/ldy/miniconda3/envs/alignment/bin/python -c \
+    python -c \
       'import json, sys; stats=json.load(open(sys.argv[1])); print(" ".join(stats.get("dimensions", [])))' \
       "${DATASET_DIR}/stats.json"
   )"

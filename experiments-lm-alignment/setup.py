@@ -121,14 +121,14 @@ install_requires = [
 setup(
     name="alignment-handbook",
     version="0.4.0.dev0",  # expected format is one of x.y.z.dev0, or x.y.z.rc1 or x.y.z (no to dashes, yes to dots)
-    author="The Hugging Face team (past and future)",
-    author_email="lewis@huggingface.co",
+    author="Anonymous Authors",
+    author_email="",
     description="The Alignment Handbook",
     long_description=open("README.md", "r", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     keywords="nlp deep learning rlhf llm",
     license="Apache",
-    url="https://github.com/huggingface/alignment-handbook",
+    url="https://github.com/anonymous-researchcode/MoPLEx",
     package_dir={"": "src"},
     packages=find_packages("src"),
     zip_safe=False,

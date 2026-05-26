@@ -31,7 +31,7 @@ args=(
   --prompt "Rank the following items based on the hidden preference."
 )
 
-# /home/ldy/miniconda3/envs/alignment/bin/python 
+# python
 python generate_text_mixture_dataset.py "${args[@]}"
 done
 # Notes:
